@@ -1,12 +1,3 @@
 <template>
-  <div class="not_found">
-
-  </div>
+  <div class="not_found">404 Not Found.</div>
 </template>
-
-<script setup lang="ts">
-</script>
-
-<style scoped lang="scss">
-
-</style>

@@ -1,4 +1,4 @@
-interface LoginDto {
+interface LoginReq {
   username: string;
   password: string;
 }
