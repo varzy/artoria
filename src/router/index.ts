@@ -1,21 +1,15 @@
-import { Permission } from '@/utils/Permission';
 import { createRouter, createWebHistory } from 'vue-router';
-import { routes } from './routes';
+import IndexView from '../views/IndexView.vue';
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-router.beforeEach((to, from, next) => {
-  if (!Permission.isLogin()) {
-    if (from.name !== 'Login' && to.name === 'Login') {
-      next();
-      return;
-    }
-  }
-
-  next();
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      name: 'Index',
+      component: IndexView,
+    },
+  ],
 });
 
 export default router;
