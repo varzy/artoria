@@ -1,15 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import IndexView from '../views/IndexView.vue';
+import { routes } from './routes';
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    {
-      path: '/',
-      name: 'Index',
-      component: IndexView,
-    },
-  ],
+  routes,
 });
 
 export default router;
