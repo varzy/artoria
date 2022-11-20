@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { Permission } from '@/utils/Permission';
 
-console.log(import.meta.env.VITE_API_BASE_URL);
 const request = Axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
 });
