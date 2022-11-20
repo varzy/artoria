@@ -1,22 +1,38 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
-import { LoginReq } from '@/types/artoria';
+import { reactive, ref } from 'vue';
+import { LoginPayload } from '@/types/artoria';
 import { Check } from '@element-plus/icons-vue';
+import { Permission } from '@/utils/Permission';
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
 
-const form = reactive<LoginReq>({
+const router = useRouter();
+
+const isSubmitting = ref(false);
+const form = reactive<LoginPayload>({
   username: '',
   password: '',
 });
 
-const onSubmit = () => {
-  console.log(form);
+const onSubmit = async () => {
+  try {
+    isSubmitting.value = true;
+    await Permission.login(form);
+    ElMessage.success('Welcome! My Master.');
+    router.push({ name: 'Index' });
+  } catch (e) {
+    ElMessage.error(`Can not check your Command Spell. Are you really my Master?`);
+    form.password = '';
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 </script>
 
 <template>
   <div class="login">
-    <ElCard class="form-wrapper" header="ALTORIA">
-      <ElForm :model="form" size="default" label-position="top">
+    <ElCard class="form-wrapper" header="ARTORIA">
+      <ElForm :model="form" size="default" label-width="64">
         <ElFormItem label="用户名">
           <ElInput v-model="form.username" @keydown.enter="onSubmit"></ElInput>
         </ElFormItem>
@@ -24,7 +40,7 @@ const onSubmit = () => {
           <ElInput v-model="form.password" type="password" @keydown.enter="onSubmit"></ElInput>
         </ElFormItem>
         <ElFormItem>
-          <ElButton type="primary" :icon="Check" @click="onSubmit">提交</ElButton>
+          <ElButton type="primary" :icon="Check" :loading="isSubmitting" @click="onSubmit">提交</ElButton>
         </ElFormItem>
       </ElForm>
     </ElCard>
@@ -37,9 +53,9 @@ const onSubmit = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #dedede;
+  background-color: #eff5f5;
   .form-wrapper {
-    width: 600px;
+    width: 480px;
   }
 }
 </style>
