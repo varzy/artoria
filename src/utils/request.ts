@@ -8,7 +8,8 @@ const request = Axios.create({
 request.interceptors.request.use((config) => {
   if (config) {
     if (!config.headers) config.headers = {};
-    if (config.hasOwnProperty.call(config, 'withToken')) config.headers['Authorization'] = Permission.getToken();
+    // if (config.hasOwnProperty.call(config, 'withToken')) config.headers['Authorization'] = `Bearer ${Permission.getToken()}`;
+    if (Permission.isLogin()) config.headers['Authorization'] = `Bearer ${Permission.getToken()}`;
   }
   return config;
 });

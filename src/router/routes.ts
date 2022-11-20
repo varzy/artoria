@@ -4,7 +4,9 @@ export const navigationRoutes = [
   {
     path: '',
     name: 'Index',
+    alias: ['dashboard'],
     component: () => import('@/views/IndexView.vue'),
+    meta: { title: 'Dashboard' },
   },
 ];
 
