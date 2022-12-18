@@ -12,3 +12,13 @@ export interface PublishChannelRes {
   publishingCovers: string[];
   publishingContent: string;
 }
+
+export interface GenerateNewsletterRes {
+  startTime: string;
+  endTime: string;
+  newsletterPageCtx: unknown;
+}
+
+export interface PublishNewsletterRes {
+  targetNewsletterId: string;
+}
