@@ -9,6 +9,6 @@ export const reqGenerateNewsletter = () =>
 
 export const reqPublishNewsletter = () =>
   request<PublishNewsletterRes>({
-    url: '/api/newsletter/generate',
+    url: '/api/newsletter/publish',
     method: 'POST',
   });
