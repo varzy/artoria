@@ -5,6 +5,8 @@ export interface LoginPayload {
 
 export interface LoginRes {
   access_token: string;
+  id: number;
+  username: string;
 }
 
 export interface PublishChannelRes {
@@ -21,4 +23,9 @@ export interface GenerateNewsletterRes {
 
 export interface PublishNewsletterRes {
   targetNewsletterId: string;
+}
+
+export interface UserInfo {
+  id: number;
+  username: string;
 }

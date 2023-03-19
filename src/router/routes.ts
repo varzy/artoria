@@ -1,6 +1,9 @@
+import { RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/layouts/HomeView.vue';
+import LoginView from '../views/login/LoginView.vue';
+import NotFoundView from '../views/errors/NotFoundView.vue';
 
-export const navigationRoutes = [
+export const navigationRoutes: RouteRecordRaw[] = [
   {
     path: '',
     name: 'Index',
@@ -10,7 +13,7 @@ export const navigationRoutes = [
   },
 ];
 
-export const routes = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
@@ -20,6 +23,15 @@ export const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login/LoginView.vue'),
+    component: LoginView,
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: NotFoundView,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: { name: 'NotFound' },
   },
 ];
